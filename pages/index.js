@@ -41,7 +41,10 @@ class Index extends React.Component {
               `https://${Cookies.get(
                 "shopOrigin"
               )}/admin/api/2021-01/pages.json`,
-              options
+              options,
+              {
+                headers: "Access-Control-Allow-Origin",
+              }
             );
             console.log(Cookies.get("shopOrigin"));
           }}
