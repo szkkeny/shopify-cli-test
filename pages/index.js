@@ -12,6 +12,7 @@ const options = {
     title: "Warranty information",
     body_html:
       "<h2>Warranty</h2>\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>",
+    published: false,
   },
 };
 
