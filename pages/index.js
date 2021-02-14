@@ -8,8 +8,16 @@ import {
 import store from "store-js";
 import ResourceListWithProducts from "../components/ResourceList";
 import Cookies from "js-cookie";
+import * as rp from "request-promise";
 
 const img = "https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg";
+const options = {
+  page: {
+    title: "Warranty information",
+    body_html:
+      "<h2>Warranty</h2>\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>",
+  },
+};
 
 class Index extends React.Component {
   state = { open: false };
@@ -32,6 +40,10 @@ class Index extends React.Component {
         />
         <Button
           onClick={() => {
+            rp.post(
+              `${Cookies.get("shopOrigin")}/admin/api/2021-01/pages.json`,
+              options
+            );
             console.log(Cookies.get("shopOrigin"));
           }}
         >
