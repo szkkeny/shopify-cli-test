@@ -30,6 +30,7 @@
     "@shopify/polaris": "^5.3.1",
     "@zeit/next-css": "^1.0.1",
     "apollo-boost": "^0.4.4",
+    "axios": "^0.21.1",
     "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
     "graphql": "^14.5.8",
@@ -44,7 +45,6 @@
     "react": "^16.10.1",
     "react-apollo": "^3.1.3",
     "react-dom": "^16.10.1",
-    "request-promise": "^4.2.6",
     "store-js": "^2.0.4"
   },
   "devDependencies": {
