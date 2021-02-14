@@ -1,28 +1,40 @@
-import React from 'react';
-import { EmptyState, Page, Layout, Button } from '@shopify/polaris';
-import { ResourcePicker, TitleBar } from '@shopify/app-bridge-react';
-import store from 'store-js';
-import ResourceListWithProducts from '../components/ResourceList';
-import { useAppBridge } from '@shopify/app-bridge-react';
+import React from "react";
+import { EmptyState, Page, Layout, Button } from "@shopify/polaris";
+import {
+  ResourcePicker,
+  TitleBar,
+  useAppBridge,
+} from "@shopify/app-bridge-react";
+import store from "store-js";
+import ResourceListWithProducts from "../components/ResourceList";
+import Cookies from "js-cookie";
 
-const img = 'https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg';
+const img = "https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg";
 
 class Index extends React.Component {
   state = { open: false };
   render() {
-    const app = useAppBridge();
-    const emptyState = !store.get('ids');
+    const emptyState = !store.get("ids");
+    const config = {
+      apiKey: API_KEY,
+      shopOrigin: Cookies.get("shopOrigin"),
+      forceRedirect: true,
+    };
 
     return (
       <Page>
         <TitleBar
           title="Sample App"
           primaryAction={{
-            content: 'Select products',
+            content: "Select products",
             onAction: () => this.setState({ open: true }),
           }}
         />
-        <Button onClick={() => {console.log(app.getState())}}>
+        <Button
+          onClick={() => {
+            console.log(Cookies.get("shopOrigin"));
+          }}
+        >
           test
         </Button>
         <ResourcePicker
@@ -38,7 +50,7 @@ class Index extends React.Component {
             <EmptyState
               heading="Discount your products temporarily"
               action={{
-                content: 'Select products',
+                content: "Select products",
                 onAction: () => this.setState({ open: true }),
               }}
               image={img}
@@ -47,15 +59,15 @@ class Index extends React.Component {
             </EmptyState>
           </Layout>
         ) : (
-            <ResourceListWithProducts />
-          )}
+          <ResourceListWithProducts />
+        )}
       </Page>
     );
   }
   handleSelection = (resources) => {
     const idsFromResources = resources.selection.map((product) => product.id);
     this.setState({ open: false });
-    store.set('ids', idsFromResources);
+    store.set("ids", idsFromResources);
   };
 }
 
