@@ -28,6 +28,11 @@ class Index extends React.Component {
     axios.defaults.headers.post["Content-Type"] =
       "application/json;charset=utf-8";
     axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
+    axios.defaults.headers.post["Access-Control-Allow-Credentials"] = "true";
+    axios.defaults.headers.post["Access-Control-Allow-Headers"] =
+      "Origin, Content-Type";
+    axios.defaults.headers.post["Access-Control-Allow-Methods"] =
+      "GET, POST, PUT, DELETE, OPTIONS";
 
     return (
       <Page>
