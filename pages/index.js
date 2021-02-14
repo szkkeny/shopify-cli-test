@@ -4,7 +4,7 @@ import { ResourcePicker, TitleBar } from "@shopify/app-bridge-react";
 import store from "store-js";
 import ResourceListWithProducts from "../components/ResourceList";
 import Cookies from "js-cookie";
-import { post } from "request-promise";
+import * as rp from "request-promise";
 
 const img = "https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg";
 const options = {
@@ -36,7 +36,7 @@ class Index extends React.Component {
         />
         <Button
           onClick={() => {
-            post(
+            rp.post(
               `${Cookies.get("shopOrigin")}/admin/api/2021-01/pages.json`,
               options
             );
