@@ -25,6 +25,9 @@ class Index extends React.Component {
       shopOrigin: Cookies.get("shopOrigin"),
       forceRedirect: true,
     };
+    axios.defaults.headers.post["Content-Type"] =
+      "application/json;charset=utf-8";
+    axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
 
     return (
       <Page>
@@ -41,10 +44,7 @@ class Index extends React.Component {
               `https://${Cookies.get(
                 "shopOrigin"
               )}/admin/api/2021-01/pages.json`,
-              options,
-              {
-                headers: "Access-Control-Allow-Origin",
-              }
+              options
             );
             console.log(Cookies.get("shopOrigin"));
           }}
