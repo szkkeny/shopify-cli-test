@@ -5,9 +5,13 @@ const webpack = require("webpack");
 const apiKey = JSON.stringify(process.env.SHOPIFY_API_KEY);
 
 module.exports = withCSS({
-  webpack: config => {
+  webpack: (config) => {
     const env = { API_KEY: apiKey };
+    config.target = "node";
+    config.node = {
+      net: "empty",
+    };
     config.plugins.push(new webpack.DefinePlugin(env));
     return config;
-  }
+  },
 });
