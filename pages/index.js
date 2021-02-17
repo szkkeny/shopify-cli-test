@@ -25,15 +25,6 @@ class Index extends React.Component {
       shopOrigin: Cookies.get("shopOrigin"),
       forceRedirect: true,
     };
-    axios.defaults.headers.post["Content-Type"] =
-      "application/json;charset=utf-8";
-    axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
-    axios.defaults.headers.post["Access-Control-Allow-Credentials"] = "true";
-    axios.defaults.headers.post["Access-Control-Allow-Headers"] =
-      "Origin, Content-Type";
-    axios.defaults.headers.post["Access-Control-Allow-Methods"] =
-      "GET, POST, PUT, DELETE, OPTIONS";
-
     return (
       <Page>
         <TitleBar
@@ -45,14 +36,12 @@ class Index extends React.Component {
         />
         <Button
           onClick={() => {
-            axios
-              .post(
-                `https://asia-northeast1-single-cycling-276009.cloudfunctions.net/function-test1`,
-                options
-              )
-              .then((res) => {
-                console.log(res);
-              });
+            axios.post(
+              `https://${Cookies.get(
+                "shopOrigin"
+              )}/admin/api/2021-01/pages.json`,
+              options
+            );
             console.log(Cookies.get("shopOrigin"));
           }}
         >
