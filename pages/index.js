@@ -47,8 +47,7 @@ class Index extends React.Component {
           onClick={() => {
             axios
               .post(
-                `https://asia-northeast1-single-cycling-276009.cloudfunctions.net/function-test1`,
-                options
+                `https://asia-northeast1-single-cycling-276009.cloudfunctions.net/function-test1`
               )
               .then((res) => {
                 console.log(res);
