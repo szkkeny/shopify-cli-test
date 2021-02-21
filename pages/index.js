@@ -37,7 +37,7 @@ class Index extends React.Component {
         <Button
           onClick={() => {
             axios.post(
-              `https://asia-northeast1-single-cycling-276009.cloudfunctions.net/function-test1`,
+              `https://us-central1-privatefunctions.cloudfunctions.net/HelloGet`,
               options
             );
             console.log(Cookies.get("shopOrigin"));
