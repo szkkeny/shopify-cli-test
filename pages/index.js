@@ -36,10 +36,14 @@ class Index extends React.Component {
         />
         <Button
           onClick={() => {
-            axios.post(
-              `https://us-central1-privatefunctions.cloudfunctions.net/HelloGet`,
-              options
-            );
+            axios
+              .post(
+                `https://us-central1-privatefunctions.cloudfunctions.net/HelloGet`,
+                options
+              )
+              .then((res) => {
+                console.log(res);
+              });
             console.log(Cookies.get("shopOrigin"));
           }}
         >
