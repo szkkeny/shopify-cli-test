@@ -8,12 +8,7 @@ import axios from "axios";
 
 const img = "https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg";
 const options = {
-  page: {
-    title: "Warranty information",
-    body_html:
-      "<h2>Warranty</h2>\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>",
-    published: false,
-  },
+  accessToken: Cookies.get("accessToken"),
 };
 
 class Index extends React.Component {
@@ -45,6 +40,7 @@ class Index extends React.Component {
                 console.log(res);
               });
             console.log(Cookies.get("shopOrigin"));
+            console.log(Cookies.get("accessToken"));
           }}
         >
           test
