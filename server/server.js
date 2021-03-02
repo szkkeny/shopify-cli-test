@@ -46,6 +46,7 @@ app.prepare().then(() => {
         //Redirect to shop upon auth
         const { shop, accessToken } = ctx.session;
         console.log(accessToken);
+        console.log("afterAuth");
         ctx.cookies.set("shopOrigin", shop, {
           httpOnly: false,
           secure: true,
@@ -66,6 +67,7 @@ app.prepare().then(() => {
     })
   );
   router.get("(.*)", verifyRequest(), async (ctx) => {
+    console.log('router.get("(.*)"');
     await handle(ctx.req, ctx.res);
     ctx.respond = false;
     ctx.res.statusCode = 200;
