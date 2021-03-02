@@ -45,6 +45,7 @@ app.prepare().then(() => {
         //Auth token and shop available in session
         //Redirect to shop upon auth
         const { shop, accessToken } = ctx.session;
+        console.log(accessToken);
         ctx.cookies.set("shopOrigin", shop, {
           httpOnly: false,
           secure: true,
