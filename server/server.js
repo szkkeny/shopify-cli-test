@@ -66,10 +66,11 @@ app.prepare().then(() => {
       version: ApiVersion.October19,
     })
   );
-  router.get("/api/test", verifyRequest(), async (ctx) => {
+  router.get("/api/test", async (ctx) => {
     console.log(ctx.req);
     ctx.respond = false;
     ctx.res.statusCode = 200;
+    ctx.res.statusMessage = "OK dayo";
   });
   router.get("(.*)", verifyRequest(), async (ctx) => {
     await handle(ctx.req, ctx.res);
