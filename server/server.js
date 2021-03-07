@@ -8,6 +8,7 @@ import next from "next";
 import Router from "koa-router";
 import session from "koa-session";
 import * as handlers from "./handlers/index";
+import axios from "axios";
 dotenv.config();
 const port = parseInt(process.env.PORT, 10) || 8081;
 const dev = process.env.NODE_ENV !== "production";
@@ -16,6 +17,15 @@ const app = next({
 });
 const handle = app.getRequestHandler();
 const { SHOPIFY_API_SECRET, SHOPIFY_API_KEY } = process.env;
+
+const options = {
+  page: {
+    title: "Warranty information",
+    body_html:
+      "<h2>Warranty</h2>\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>",
+    published: false,
+  },
+};
 app.prepare().then(() => {
   const server = new Koa();
   const router = new Router();
@@ -52,11 +62,6 @@ app.prepare().then(() => {
           secure: true,
           sameSite: "none",
         });
-        ctx.cookies.set("accessToken", accessToken, {
-          httpOnly: false,
-          secure: true,
-          sameSite: "none",
-        });
         ctx.redirect("/");
       },
     })
@@ -67,7 +72,13 @@ app.prepare().then(() => {
     })
   );
   router.get("/api/test", verifyRequest(), async (ctx) => {
-    ctx.body = "Hello World!!";
+    const { shop, accessToken } = ctx.session;
+    axios
+      .post(`https://${shop}/admin/api/2021-01/pages.json`, options, {
+        headers: { "X-Shopify-Access-Token": accessToken },
+      })
+      .catch((e) => console.log(e));
+    ctx.body = accessToken;
   });
   router.get("(.*)", verifyRequest(), async (ctx) => {
     await handle(ctx.req, ctx.res);
