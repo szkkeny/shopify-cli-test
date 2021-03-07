@@ -31,16 +31,9 @@ class Index extends React.Component {
         />
         <Button
           onClick={() => {
-            axios
-              .post(
-                `https://us-central1-privatefunctions.cloudfunctions.net/HelloGet`,
-                options
-              )
-              .then((res) => {
-                console.log(res);
-              });
-            console.log(Cookies.get("shopOrigin"));
-            console.log(Cookies.get("accessToken"));
+            axios.get(`/api/test`, options).then((res) => {
+              console.log(res);
+            });
           }}
         >
           test

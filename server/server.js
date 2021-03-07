@@ -66,7 +66,7 @@ app.prepare().then(() => {
       version: ApiVersion.October19,
     })
   );
-  router.get("/api/test", async (ctx) => {
+  router.get("/api/test", verifyRequest(), async (ctx) => {
     ctx.body = "Hello World!!";
   });
   router.get("(.*)", verifyRequest(), async (ctx) => {
